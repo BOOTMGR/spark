@@ -2704,6 +2704,9 @@ class SQLQuerySuite extends SQLQuerySuiteBase with DisableAdaptiveExecutionSuite
                     checkAnswer(sql(s"SELECT id FROM $targetTable"),
                       Row(1) :: Row(2) :: Row(3) :: Nil)
                     spark.sparkContext.listenerBus.waitUntilEmpty()
+                    // scalastyle:off println
+                    println(commands.map(_.nodeName).mkString(" "))
+                    // scalastyle:on println
                     assert(commands.size == 4)
                     assert(commands.head.nodeName == "Execute CreateHiveTableAsSelectCommand")
 
