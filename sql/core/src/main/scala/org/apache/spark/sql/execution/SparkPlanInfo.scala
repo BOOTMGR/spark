@@ -49,6 +49,10 @@ class SparkPlanInfo(
       nodeName == o.nodeName && simpleString == o.simpleString && children == o.children
     case _ => false
   }
+
+  override def toString: String = {
+    s"$nodeName ($simpleString) [${children.map(_.toString).mkString(", ")}]"
+  }
 }
 
 private[execution] object SparkPlanInfo {
